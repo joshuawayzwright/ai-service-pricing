@@ -124,3 +124,7 @@ footer.site { padding: 24px 16px 40px; color: var(--muted); font-size: .9rem; bo
   pre.output { border: 0; max-height: none; overflow: visible; font-size: 12px; }
 }
 .card h2.spaced { margin-top: 22px; }
+
+.cta { margin-top: 18px; padding: 14px 16px; border: 1px solid var(--gold-bright); border-radius: var(--radius); background: var(--bg); }
+.cta p { margin: 0 0 8px; }
+.cta-link { display: inline-block; font-weight: 700; padding: 10px 0; }
