@@ -1,0 +1,12 @@
+{
+  "name": "ai-service-pricing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free browser tool for Australian sole traders by The Solo Service Provider.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "start": "python3 -m http.server 8080"
+  },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>AI Service Pricing Planner</title>
+<meta name="description" content="Work out the hourly and day rate an Australian sole trader needs after super, costs and time off, then price a job. Free and runs in your browser.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the form</a>
+<header class="site"><div class="wrap">
+  <h1>AI Service <span>Pricing</span> Planner</h1>
+  <p>Find the rate you actually need, then price a job from it. Everything stays in your browser.</p>
+</div></header>
+
+<main id="main" class="wrap">
+  <div class="grid">
+    <form class="card" id="form" novalidate>
+      <h2>What you need to earn</h2>
+      <label for="income">Pay yourself per year <span class="hint">Before income tax</span></label>
+      <input id="income" type="number" min="0" step="1000" value="80000" inputmode="numeric">
+      <div class="row two">
+        <div><label for="superRate">Super (%) <span class="hint">Matches the employee guarantee</span></label><input id="superRate" type="number" min="0" max="50" step="0.5" value="12"></div>
+        <div><label for="costs">Business costs per year <span class="hint">Insurance, fuel, phone, tools…</span></label><input id="costs" type="number" min="0" step="500" value="15000"></div>
+      </div>
+      <label for="bufferPercent">Profit buffer (%) <span class="hint">For slow months, repairs and growth</span></label>
+      <input id="bufferPercent" type="number" min="0" max="100" value="10">
+
+      <h2 class="spaced">Your time</h2>
+      <div class="row three">
+        <div><label for="weeksOff">Weeks off a year</label><input id="weeksOff" type="number" min="0" max="51" value="6"></div>
+        <div><label for="hoursPerWeek">Hours per week</label><input id="hoursPerWeek" type="number" min="1" max="100" value="40"></div>
+        <div><label for="daysPerWeek">Days per week</label><input id="daysPerWeek" type="number" min="1" max="7" value="5"></div>
+      </div>
+      <label for="billablePercent">Billable time (%) <span class="hint">Share of your hours a customer pays for. Quoting, travel and admin aren't billable.</span></label>
+      <input id="billablePercent" type="number" min="1" max="100" value="70">
+      <label class="check"><input type="checkbox" id="gstRegistered"> I'm registered for GST</label>
+
+      <h2 class="spaced">Price a job</h2>
+      <div class="row two">
+        <div><label for="hours">Hours on the job</label><input id="hours" type="number" min="0" step="0.25" value="3"></div>
+        <div><label for="materials">Materials cost ($)</label><input id="materials" type="number" min="0" step="1" value="0"></div>
+      </div>
+      <div class="row two">
+        <div><label for="markupPercent">Materials markup (%)</label><input id="markupPercent" type="number" min="0" value="15"></div>
+        <div><label for="callOut">Call-out fee ($)</label><input id="callOut" type="number" min="0" value="0"></div>
+      </div>
+
+      <h2 class="spaced">For the AI prompt</h2>
+      <div class="row two">
+        <div><label for="service">Your service</label><input id="service" placeholder="e.g. Mobile dog grooming"></div>
+        <div><label for="area">Your area</label><input id="area" placeholder="e.g. Gold Coast"></div>
+      </div>
+    </form>
+
+    <section class="card" aria-labelledby="out-title">
+      <h2 id="out-title">Your numbers</h2>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><b id="s-hourly">$0</b><span>Hourly (ex GST, rounded up)</span></div>
+        <div class="stat"><b id="s-day">$0</b><span>Day rate (ex GST)</span></div>
+        <div class="stat"><b id="s-job">$0</b><span>Job price to quote</span></div>
+        <div class="stat"><b id="s-turnover">$0</b><span>Turnover needed</span></div>
+      </div>
+      <p class="error" id="errors" role="alert"></p>
+      <pre class="output" id="output"></pre>
+      <div class="buttons no-print">
+        <button class="primary" type="button" id="copy">Copy summary</button>
+        <button type="button" id="copy-ai">Copy AI pricing prompt</button>
+        <button type="button" id="print">Print / save PDF</button>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <p class="hint no-print">The AI prompt asks an assistant to build packages and wording around your rate without lowering it. This app doesn't call any AI itself.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site"><div class="wrap">
+  Free tool by <a href="https://thesoloserviceprovider.com.au/">The Solo Service Provider</a>. A planning aid, not tax or financial advice. Check super and GST rules with the ATO or your accountant.
+  · <a href="https://github.com/joshuawayzwright/ai-service-pricing">Source</a>
+</div></footer>
+<script src="lib.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
